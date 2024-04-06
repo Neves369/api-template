@@ -60,13 +60,12 @@ cp .env.example .env
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Logging](#logging)
-- [Custom Mongoose Plugins](#custom-mongoose-plugins)
 - [Linting](#linting)
 - [Contributing](#contributing)
 
 ## Features
 
-- **NoSQL database**: [MongoDB](https://www.mongodb.com) object data modeling using [Mongoose](https://mongoosejs.com)
+- **SQL database**: [PostgreSQL](https://www.mongodb.com) object data modeling using [TypeORM](https://mongoosejs.com)
 - **Authentication and authorization**: using [passport](http://www.passportjs.org)
 - **Validation**: request data validation using [Joi](https://github.com/hapijs/joi)
 - **Logging**: using [winston](https://github.com/winstonjs/winston) and [morgan](https://github.com/expressjs/morgan)
@@ -77,7 +76,6 @@ cp .env.example .env
 - **Dependency management**: with [Yarn](https://yarnpkg.com)
 - **Environment variables**: using [dotenv](https://github.com/motdotla/dotenv) and [cross-env](https://github.com/kentcdodds/cross-env#readme)
 - **Security**: set security HTTP headers using [helmet](https://helmetjs.github.io)
-- **Santizing**: sanitize request data against xss and query injection
 - **CORS**: Cross-Origin Resource-Sharing enabled using [cors](https://github.com/expressjs/cors)
 - **Compression**: gzip compression with [compression](https://github.com/expressjs/compression)
 - **CI**: continuous integration with [Travis CI](https://travis-ci.org)
@@ -152,8 +150,12 @@ The environment variables can be found and modified in the `.env` file. They com
 # Port number
 PORT=3000
 
-# URL of the Mongo DB
-MONGODB_URL=mongodb://127.0.0.1:27017/node-boilerplate
+# postgresql
+PG_HOST=localhost
+PG_PORT=5432
+POSTGRES_DB=teste
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=123456
 
 # JWT
 # JWT secret key
@@ -165,11 +167,11 @@ JWT_REFRESH_EXPIRATION_DAYS=30
 
 # SMTP configuration options for the email service
 # For testing, you can use a fake SMTP service like Ethereal: https://ethereal.email/create
-SMTP_HOST=email-server
+SMTP_HOST=smtp.ethereal.email
 SMTP_PORT=587
-SMTP_USERNAME=email-server-username
-SMTP_PASSWORD=email-server-password
-EMAIL_FROM=support@yourapp.com
+SMTP_USERNAME=riley.greenfelder37@ethereal.email
+SMTP_PASSWORD=ZsRn64dKjGEFk3ygst
+EMAIL_FROM=riley.greenfelder37@ethereal.email
 ```
 
 ## Project Structure
@@ -178,9 +180,10 @@ EMAIL_FROM=support@yourapp.com
 src\
  |--config\         # Environment variables and configuration related things
  |--controllers\    # Route controllers (controller layer)
+ |--database\       # TypeORM configurations
  |--docs\           # Swagger files
  |--middlewares\    # Custom express middlewares
- |--models\         # Mongoose models (data layer)
+ |--models\         # Entity models (data layer)
  |--routes\         # Routes
  |--services\       # Business logic (service layer)
  |--utils\          # Utility classes and functions
