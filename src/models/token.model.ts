@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,7 +9,7 @@ import {
 } from 'typeorm'
 
 import  TokenTypes  from '../config/tokens'
-import { User } from './user.model'
+import  User  from './user.model'
 
 @Entity('tokens')
 export class Token {
@@ -21,10 +21,9 @@ export class Token {
   token!: string;
 
   
-  // @ManyToOne(() => User)
-  // @JoinColumn()
-  @Column(() => User)
-  user: User;
+  @ManyToOne(() => User, user => user.tokens) // Especifique a relação ManyToOne
+  @JoinColumn({ name: 'user_id' }) // Especifique a coluna de chave estrangeira
+  user: User | undefined; // Associe esta propriedade à entidade User
 
  
   @Column({

@@ -1,54 +1,17 @@
-
-// import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-
-// const configSeed: any = {
-//   type: 'postgres',
-//   host: process.env.PG_HOST,
-//   port: Number(process.env.PG_PORT),
-//   username: process.env.POSTGRES_USER,
-//   password: process.env.POSTGRES_PASSWORD,
-//   database: process.env.POSTGRES_DB,
-//   synchronize: false,
-//   logging: false,
-//   entities: ['src/orm/entities/**/*.ts'],
-//   migrations: ['src/orm/seeds/**/*.ts'],
-//   namingStrategy: new SnakeNamingStrategy(),
-// };
-
-// export = configSeed;
-
-// import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-
-// const config: any = {
-//   type: 'postgres',
-//   name: 'default',
-//   host: process.env.PG_HOST,
-//   port: Number(process.env.PG_PORT) || 5432, // define um valor padrão para port
-//   username: process.env.POSTGRES_USER,
-//   password: process.env.POSTGRES_PASSWORD,
-//   database: process.env.POSTGRES_DB,
-//   synchronize: false,
-//   logging: false,
-//   entities: ['dist/orm/entities/**/*.js'], // use a pasta de build em vez da pasta de origem
-//   migrations: ['dist/orm/migrations/**/*.js'], // use a pasta de build em vez da pasta de origem
-//   subscribers: ['dist/orm/subscribers/**/*.js'], // use a pasta de build em vez da pasta de origem
-//   namingStrategy: new SnakeNamingStrategy(),
-// };
-
-// export = config;
-
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-// import { Photo } from "./entity/Photo"
+import User  from "../../models/user.model";
+import Token  from "../../models/token.model";
+
 
 const AppDataSourceSeed = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "123456",
-    database: "teste",
-    entities: ['dist/orm/entities/**/*.js'],
+    host: process.env.PG_HOST,
+    port: Number(process.env.PG_PORT) | 5432,
+    username: process.env.POSTGRES_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.POSTGRES_DB,
+    entities: [User, Token],
     synchronize: true,
     logging: false,
 })
