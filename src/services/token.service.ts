@@ -7,7 +7,7 @@ import userService from './user.service';
 import { Token } from '../models';
 import ApiError from '../utils/ApiError';
 import  tokenTypes  from '../config/tokens';
-import AppDataSource from '../database/config/ormconfig';
+import AppDataSource from '../database/config';
 
 /**
  * Generate token

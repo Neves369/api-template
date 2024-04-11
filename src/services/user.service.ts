@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { User } from '../models';
 import httpStatus from 'http-status';
 import ApiError from '../utils/ApiError';
-import AppDataSource from '../database/config/ormconfig';
+import AppDataSource from '../database/config';
 
 /**
  * Create a user

@@ -16,6 +16,7 @@ import {successHandler, errorHandler as morganErrorHandler } from './config/morg
 
 const app = express();
 
+
 app.get('/favicon.ico', (req, res) => res.status(204));
 
 if (config.env !== 'test') {

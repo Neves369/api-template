@@ -1,4 +1,3 @@
-// import mongoose from 'mongoose';
 //@ts-nocheck
 import httpStatus from 'http-status';
 import config from '../config/config';
@@ -18,6 +17,7 @@ const errorConverter = (err, req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
+  // console.log("|method: ", req.method, "|url: ", req.url, "|status: ", err.statusCode, "|error: ", err.message)
   let { statusCode, message } = err;
   if (config.env === 'production' && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;

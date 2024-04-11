@@ -9,10 +9,10 @@ const AppDataSource = new DataSource({
     host: process.env.PG_HOST,
     port: Number(process.env.PG_PORT) | 5432,
     username: process.env.POSTGRES_USER,
-    password: process.env.PG_PASSWORD,
+    password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     entities: [User, Token],
-    synchronize: true,
+    synchronize: false,
     logging: false,
 })
 

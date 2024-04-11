@@ -2,7 +2,7 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import tokenTypes  from './tokens';
 import { User } from '../models';
 import config from './config';
-import AppDataSource from '../database/config/ormconfig';
+import AppDataSource from '../database/config';
 
 /**
  * Opções de configuração para a estratégia de autenticação JWT
@@ -23,7 +23,7 @@ const jwtVerify = async (payload: { type: string; sub: any; }, done: (arg0: unkn
       throw new Error('Token inválido');
     }
     const userRepository = AppDataSource.getRepository(User)
-    const user = await userRepository.findOne(payload.sub);
+    const user = await userRepository.findOne({where:{id: payload.sub}});
     if (!user) {
       return done(null, false);
     }
