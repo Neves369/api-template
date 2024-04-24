@@ -1,7 +1,25 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import User  from "../../models/user.model";
+
+import User  from "../../models/usuario.model";
 import Token  from "../../models/token.model";
+import Modulo  from "../../models/modulo.model";
+import Empresa  from "../../models/empresa.model";
+import Permissao  from "../../models/permissao.model";
+import PerfilAcesso  from "../../models/perfilAcesso.model";
+import PermissoesPerfilAcesso  from "../../models/Association/permissoesPerfilAcesso.model";
+
+import Modulos_Empresa  from "../../models/Association/modulos_empresa.model";
+import { CreateUsers1590521920166 } from "../migrations/1590521920166-CreateUsers";
+import { CreateTokens1713465641598 } from "../migrations/1713465641598-CreateTokens";
+import { CreateModules1713969136272} from "../migrations/1713969136272-CreateModules";
+import { CreateCompanies1713982846674} from "../migrations/1713982846674-CreateCompanies";
+import { CreateModulesCompanie1713984157764} from "../migrations/1713984157764-CreateModulesCompanie";
+import { CreatePermissions1713987604626} from "../migrations/1713987604626-CreatePermissions";
+import { CreateProfileAccess1713988023179} from "../migrations/1713988023179-CreateProfileAccess";
+import { CreatePermissionsProfileAccess1713988821239} from "../migrations/1713988821239-CreatePermissionsProfileAccess";
+
+
 
 
 const AppDataSourceSeed = new DataSource({
@@ -11,8 +29,28 @@ const AppDataSourceSeed = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    entities: [User, Token],
-    synchronize: true,
+    migrations: [
+        CreateUsers1590521920166, 
+        CreateTokens1713465641598,
+        CreateModules1713969136272,
+        CreateCompanies1713982846674,
+        CreateModulesCompanie1713984157764,
+        CreatePermissions1713987604626,
+        CreateProfileAccess1713988023179,
+        CreatePermissionsProfileAccess1713988821239
+    ],
+    entities: [
+        User, 
+        Token, 
+        Modulo, 
+        Empresa, 
+        Modulos_Empresa, 
+        Permissao, 
+        PerfilAcesso, 
+        PermissoesPerfilAcesso
+    ],
+    migrationsRun: true,
+    synchronize: false,
     logging: false,
 })
 

@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import User  from "../../models/user.model";
+import User  from "../../models/usuario.model";
 import Token  from "../../models/token.model";
 
 

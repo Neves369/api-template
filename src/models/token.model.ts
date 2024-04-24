@@ -9,9 +9,9 @@ import {
 } from 'typeorm'
 
 import  TokenTypes  from '../config/tokens'
-import  User  from './user.model'
+import  User  from './usuario.model'
 
-@Entity('tokens')
+@Entity('gestao.tokens')
 export class Token {
   @PrimaryGeneratedColumn()
   id!: number;

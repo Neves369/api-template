@@ -7,7 +7,7 @@ import Token from '../models/token.model';
 import ApiError from '../utils/ApiError';
 import tokenTypes  from '../config/tokens';
 import AppDataSource from '../database/config';
-import User  from '../models/user.model';
+import User  from '../models/usuario.model';
 
 /**
  * Login with username and password
