@@ -7,7 +7,7 @@ export class CreateCompanies1713982846674 implements MigrationInterface {
             `CREATE TABLE empresas (
                 id SERIAL PRIMARY KEY,  
                 razao_social VARCHAR(100) NOT NULL, 
-                nome_fantasia INTEGER NOT NULL, 
+                nome_fantasia VARCHAR(100) NOT NULL, 
                 cnpj VARCHAR(14) NOT NULL,  
                 responsavel VARCHAR(100) NOT NULL,
                 status BOOLEAN NOT NULL DEFAULT TRUE

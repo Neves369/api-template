@@ -18,6 +18,7 @@ import { CreateModulesCompanie1713984157764} from "../migrations/1713984157764-C
 import { CreatePermissions1713987604626} from "../migrations/1713987604626-CreatePermissions";
 import { CreateProfileAccess1713988023179} from "../migrations/1713988023179-CreateProfileAccess";
 import { CreatePermissionsProfileAccess1713988821239} from "../migrations/1713988821239-CreatePermissionsProfileAccess";
+import { AlterTables1714050816310 } from "../migrations/1714050816310-AlterTables";
 
 
 
@@ -30,24 +31,25 @@ const AppDataSourceSeed = new DataSource({
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     migrations: [
-        CreateUsers1590521920166, 
-        CreateTokens1713465641598,
         CreateModules1713969136272,
         CreateCompanies1713982846674,
         CreateModulesCompanie1713984157764,
         CreatePermissions1713987604626,
         CreateProfileAccess1713988023179,
-        CreatePermissionsProfileAccess1713988821239
+        CreatePermissionsProfileAccess1713988821239,
+        CreateUsers1590521920166, 
+        CreateTokens1713465641598,
+        AlterTables1714050816310
     ],
     entities: [
-        User, 
-        Token, 
-        Modulo, 
         Empresa, 
+        Modulo, 
         Modulos_Empresa, 
         Permissao, 
         PerfilAcesso, 
-        PermissoesPerfilAcesso
+        PermissoesPerfilAcesso,
+        User, 
+        Token, 
     ],
     migrationsRun: true,
     synchronize: false,

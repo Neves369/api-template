@@ -9,6 +9,8 @@ import {
   ManyToOne,
   JoinColumn
 } from 'typeorm';
+import Empresa from './empresa.model';
+import PerfilAcesso from './perfilAcesso.model';
 
 enum TipoSexo {
   Masculino = 'MASCULINO',
@@ -66,7 +68,15 @@ export default class User extends BaseEntity {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'usuario_ultima_alteracao_id' })
-  usuarioUltimaAlteracaoId: Usuario;
+  usuarioUltimaAlteracao: Usuario | undefined;
+
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'empresa_id' })
+  empresa!: Empresa;
+
+  @ManyToOne(() => PerfilAcesso)
+  @JoinColumn({ name: 'perfil_acesso_id' })
+  perfilAcesso!: PerfilAcesso;
 
   @Column({default: true})
   status!: boolean;

@@ -12,9 +12,7 @@ export class CreateProfileAccess1713988023179 implements MigrationInterface {
                 empresa_id INTEGER NOT NULL,
                 usuario_criacao_id INTEGER NOT NULL,
                 usuario_ultima_alteracao_id INTEGER NOT NULL,
-                CONSTRAINT perfis_acesso_empresa_id_fkey FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE,
-                CONSTRAINT perfis_acesso_usuario_criacao_id_fkey FOREIGN KEY (usuario_criacao_id) REFERENCES gestao.usuarios(id) ON DELETE CASCADE,
-                CONSTRAINT perfis_acesso_usuario_ultima_alteracao_id_fkey FOREIGN KEY (usuario_ultima_alteracao_id) REFERENCES gestao.usuarios(id) ON DELETE CASCADE
+                CONSTRAINT perfis_acesso_empresa_id_fkey FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE
             );`,
             undefined,
         );
