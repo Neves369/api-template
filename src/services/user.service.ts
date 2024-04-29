@@ -30,7 +30,18 @@ const createUser = async (userBody: any): Promise<User> => {
  * @returns {Promise<QueryResult>}
  */
 const queryUsers = async (filter: object, options: { sortBy?: string; limit?: number; page?: number; }): Promise<QueryResult> => {
-  const users = await User.paginate(filter, options);
+  const userRepository = AppDataSource.getRepository(User)
+
+  const skip = options.page? (options.page - 1) * options.limit : 0;
+  const take = options.limit || 10;
+
+  const users = await userRepository.findAndCount({
+    where: filter,
+    order: { [options.sortBy || 'id']: 'ASC' },
+    skip,
+    take,
+  });
+
   return users;
 };
 

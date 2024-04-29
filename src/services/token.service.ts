@@ -40,10 +40,10 @@ const saveToken = async (token: string, userId: ObjectId, expires: Moment, type:
   const tokenRepository = AppDataSource.getRepository(Token);
   const tokenDoc = await tokenRepository.save({
     token,
-    user: userId,
-    expires: expires.toDate(),
-    type,
-    blacklisted,
+    usuario: userId,
+    expiracao: expires.toDate(),
+    tipo: type,
+    listaNegra: blacklisted,
   });
   return tokenDoc;
 };

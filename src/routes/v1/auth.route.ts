@@ -89,17 +89,17 @@ export default router;
  *             type: object
  *             required:
  *               - email
- *               - password
+ *               - senha
  *             properties:
  *               email:
  *                 type: string
  *                 format: email
- *               password:
+ *               senha:
  *                 type: string
  *                 format: password
  *             example:
  *               email: teste@teste.com
- *               password: senha1234
+ *               senha: teste123
  *     responses:
  *       "200":
  *         description: OK
@@ -113,14 +113,14 @@ export default router;
  *                 tokens:
  *                   $ref: '#/components/schemas/AuthTokens'
  *       "401":
- *         description: Invalid email or password
+ *         description: Email ou Senha inválidos!
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *             example:
  *               code: 401
- *               message: Invalid email or password
+ *               message: Email ou Senha inválidos!
  */
 
 /**
@@ -227,15 +227,15 @@ export default router;
  *           schema:
  *             type: object
  *             required:
- *               - password
+ *               - senha
  *             properties:
- *               password:
+ *               senha:
  *                 type: string
  *                 format: password
  *                 minLength: 8
  *                 description: At least one number and one letter
  *             example:
- *               password: password1
+ *               senha: senha123
  *     responses:
  *       "204":
  *         description: No content

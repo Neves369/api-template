@@ -89,15 +89,15 @@ export default router;
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
- *         name: name
+ *         name: nome
  *         schema:
  *           type: string
- *         description: User name
+ *         description: Nome do Usuário
  *       - in: query
  *         name: role
  *         schema:
  *           type: string
- *         description: User role
+ *         description: Perfil Acesso do Usuário
  *       - in: query
  *         name: sortBy
  *         schema:

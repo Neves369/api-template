@@ -11,8 +11,8 @@ const register = catchAsync(async (req, res) => {
 
 // Efetua o login de um usuário
 const login = catchAsync(async (req, res) => {
-  const { email, password } = req.body;
-  const user = await authService.loginUserWithEmailAndPassword(email, password);
+  const { email, senha } = req.body;
+  const user = await authService.loginUserWithEmailAndPassword(email, senha);
   const tokens = await tokenService.generateAuthTokens(user);
   res.send({ user, tokens });
 });
@@ -38,7 +38,7 @@ const forgotPassword = catchAsync(async (req, res) => {
 
 // Redefine a senha de um usuário
 const resetPassword = catchAsync(async (req, res) => {
-  await authService.resetPassword(req.query.token, req.body.password);
+  await authService.resetPassword(req.query.token, req.body.senha);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

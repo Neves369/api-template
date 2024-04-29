@@ -22,23 +22,23 @@ export class Token {
 
   
   @ManyToOne(() => User, user => user.tokens) // Especifique a relação ManyToOne
-  @JoinColumn({ name: 'user_id' }) // Especifique a coluna de chave estrangeira
-  user: User | undefined; // Associe esta propriedade à entidade User
+  @JoinColumn({ name: 'usuario_id' }) // Especifique a coluna de chave estrangeira
+  usuario: User | undefined; // Associe esta propriedade à entidade User
 
  
   @Column({
     type: 'enum',
     enum: TokenTypes,
   })
-  type!: TokenTypes
+  tipo!: TokenTypes
 
  
   @Column()
-  expires!: Date;
+  expiracao!: Date;
 
 
-  @Column()
-  blacklisted!: boolean;
+  @Column({name: 'lista_negra'})
+  listaNegra!: boolean;
 }
 
 export default Token;

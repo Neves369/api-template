@@ -15,7 +15,7 @@ import Empresa from './empresa.model';
 
 
   
-@Entity('perfis_acesso')
+@Entity('gestao.perfis_acesso')
 export default class PerfilAcesso extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number;

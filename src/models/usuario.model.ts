@@ -70,7 +70,7 @@ export default class User extends BaseEntity {
   @JoinColumn({ name: 'usuario_ultima_alteracao_id' })
   usuarioUltimaAlteracao: Usuario | undefined;
 
-  @ManyToOne(() => Empresa)
+  @ManyToOne(() => Empresa, empresa => empresa.id)
   @JoinColumn({ name: 'empresa_id' })
   empresa!: Empresa;
 

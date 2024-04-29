@@ -8,17 +8,29 @@ import ApiError from '../utils/ApiError';
 import tokenTypes  from '../config/tokens';
 import AppDataSource from '../database/config';
 import User  from '../models/usuario.model';
+import Permissao from '../models/permissao.model';
 
 /**
  * Login with username and password
  * @param {string} email
- * @param {string} password
+ * @param {string} senha
  * @returns {Promise<User>}
  */
-const loginUserWithEmailAndPassword = async (email: string, password: string): Promise<User> => {
+const loginUserWithEmailAndPassword = async (email: string, senha: string): Promise<User> => {
   const userRepository = AppDataSource.getRepository(User);
-  const user = await userRepository.findOne({ where: { email } });
-  if (!user || !(bcrypt.compareSync(password, user.password))) {
+  const permissionsRepository = AppDataSource.getRepository(Permissao);
+  const user = await userRepository.findOne({ where: { email }, relations: ['empresa', 'perfilAcesso'] });
+  const perfilAcessoId = user.perfilAcesso.id 
+  const permissoes = await permissionsRepository.query(`
+    SELECT gestao.permissoes.*
+    FROM gestao.permissoes
+    JOIN gestao.permissoes_perfil_acesso ON gestao.permissoes.id = gestao.permissoes_perfil_acesso.permissao_id
+    WHERE gestao.permissoes_perfil_acesso.perfil_acesso_id = ${perfilAcessoId}; 
+  `)
+
+
+  user.permissoes = permissoes;
+  if (!user || !(bcrypt.compareSync(senha, user.senha))) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Email ou Senha incorretos!');
   }
   return user;
