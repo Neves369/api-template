@@ -39,6 +39,17 @@ const queryUsers = async (filter: object, options: { sortBy?: string; limit?: nu
     // Adiciona a empresa ao filtro
     let where: any = { };
 
+    // Adiciona condição para buscar email se fornecido
+    if (filter.email) {
+      where = { email: filter.email };
+    }
+
+    // Adiciona condição para buscar status se fornecido
+    if (filter.status) {
+      let status = filter.status;
+      where = {...where, status};
+    }
+
     // Adiciona condição para buscar nome se fornecido
     if (filter.nome) {
       where = [
@@ -46,7 +57,6 @@ const queryUsers = async (filter: object, options: { sortBy?: string; limit?: nu
       ];
     }
 
-    console.log(where);
 
     const users = await userRepository.findAndCount({
         where,
