@@ -23,8 +23,8 @@ export default router;
 /**
  * @swagger
  * tags:
- *   name: Usuarios
- *   description: Gerenciamento e recuperação de usuários
+ *   name: Perfil Acesso
+ *   description: Gerenciamento e recuperação de perfis acesso
  */
 
 /**
@@ -33,7 +33,7 @@ export default router;
  *   post:
  *     summary: Criar Usuário
  *     description: Somente administradores podem criar usuários
- *     tags: [Usuarios]
+ *     tags: [Perfil Acesso]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -84,7 +84,7 @@ export default router;
  *   get:
  *     summary: Retornar todos os usuários
  *     description: Somente administradores podem ver todos os usuários.
- *     tags: [Usuarios]
+ *     tags: [Perfil Acesso]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -153,7 +153,7 @@ export default router;
  *   get:
  *     summary: Get a user
  *     description: Logged in users can fetch only their own user information. Only admins can fetch other users.
- *     tags: [Usuarios]
+ *     tags: [Perfil Acesso]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -180,7 +180,7 @@ export default router;
  *   patch:
  *     summary: Update a user
  *     description: Logged in users can only update their own information. Only admins can update other users.
- *     tags: [Usuarios]
+ *     tags: [Perfil Acesso]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -231,7 +231,7 @@ export default router;
  *   delete:
  *     summary: Delete a user
  *     description: Logged in users can delete only themselves. Only admins can delete other users.
- *     tags: [Usuarios]
+ *     tags: [Perfil Acesso]
  *     security:
  *       - bearerAuth: []
  *     parameters:

@@ -1,5 +1,6 @@
 //@ts-nocheck
 import bcrypt from 'bcryptjs';
+import { Raw } from 'typeorm';
 import { User } from '../models';
 import httpStatus from 'http-status';
 import ApiError from '../utils/ApiError';
@@ -29,20 +30,32 @@ const createUser = async (userBody: any): Promise<User> => {
  * @param {number} [options.page] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
-const queryUsers = async (filter: object, options: { sortBy?: string; limit?: number; page?: number; }): Promise<QueryResult> => {
-  const userRepository = AppDataSource.getRepository(User)
+const queryUsers = async (filter: object, options: { sortBy?: string; limit?: number; page?: number;}, empresa: string): Promise<QueryResult> => {
+  const userRepository = AppDataSource.getRepository(User);
 
-  const skip = options.page? (options.page - 1) * options.limit : 0;
-  const take = options.limit || 10;
+    const skip = options.page ? (options.page - 1) * options.limit : 0;
+    const take = options.limit || 10;
 
-  const users = await userRepository.findAndCount({
-    where: filter,
-    order: { [options.sortBy || 'id']: 'ASC' },
-    skip,
-    take,
-  });
+    // Adiciona a empresa ao filtro
+    let where: any = { };
 
-  return users;
+    // Adiciona condição para buscar nome se fornecido
+    if (filter.nome) {
+      where = [
+        { nome: Raw(alias => `unaccent(${alias}) ILIKE unaccent('%${filter.nome.toLowerCase()}%')`) }
+      ];
+    }
+
+    console.log(where);
+
+    const users = await userRepository.findAndCount({
+        where,
+        order: { [options.sortBy || 'id']: 'ASC' },
+        skip,
+        take,
+    });
+
+    return users;
 };
 
 /**

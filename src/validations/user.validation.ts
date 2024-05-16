@@ -13,7 +13,8 @@ const createUser = {
 
 const getUsers = {
   query: Joi.object().keys({
-    name: Joi.string(),
+    nome: Joi.string(),
+    status: Joi.string(),
     role: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
@@ -46,7 +47,7 @@ const deleteUser = {
   }),
 };
 
-export  = {
+export = {
   createUser,
   getUsers,
   getUser,
